@@ -4,8 +4,22 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1>Welcome to Index PAGE!</h1>
+<h1>Welcome to Index PAGE,
+    <th:block th:text="${userName}">
+    </th:block>
+</h1>
 
+<h2>
+    <div th:if="${(authenticated) == false}">
+        <p> please,  <a th:href="@{/login}" th:text="login"></a> to proceed </p>
+    </div>
+</h2>
+
+<h2>
+    <div th:if="${(authenticated) == true}">
+        <p><a th:href="@{/logout}" th:text="logout"></a> to close your session </p>
+    </div>
+</h2>
 
 </body>
 </html>

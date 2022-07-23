@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>All users</title>
+</head>
+<body>
+<table th:border="1">
+<caption><h2> Зарегистрированные в БД пользователи</h2></caption>
+
+    <tr>
+        <th>FirstName(login)</th> <th>LastName</th> <th>roles</th>
+    </tr>
+    <th:block th:each="user : ${usersList}">
+    <tr>
+        <td><h2><a th:href="@{user/{id}(id=${user.getId()})}" th:text="${user.getFirstName()}"></a></h2></td>
+        <td><h2><th:block th:text="${user.getLastName()}"></th:block></h2></td>
+        <td><h4><ul><th:block th:each="role : ${user.getRoles()}">
+            <li th:text="${role.getRole()}"></li></th:block></ul></h4></td>
+    </tr>
+    </th:block>
+</table>
+
+<form th:method="GET" th:action="@{/admin/user/add}">
+    <input type="submit" value="Add user">
+</form>
+
+<br>
+
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="logout">
+</form>
+
+</body>
+</html>
