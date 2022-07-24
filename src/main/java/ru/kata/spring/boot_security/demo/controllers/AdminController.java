@@ -33,7 +33,7 @@ public class AdminController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User admin = userDetails.getUser();
         model.addAttribute("admin", admin);
-        return ("admin");
+        return ("admin_new");
     }
 
 
@@ -41,9 +41,13 @@ public class AdminController {
 
     @GetMapping(value = "admin/users")
     public String allUsers(ModelMap model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User admin = userDetails.getUser();
         List<User> users = userService.getUsers();
         model.addAttribute("usersList", users);
-        return ("admin/users");
+        model.addAttribute("admin", admin);
+        return ("admin/users_new");
     }
 
     @GetMapping(value = "/admin/user/{id}")

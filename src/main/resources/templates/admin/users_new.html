@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Admin Panel</title>
+</head>
+<body>
+
+<!-- ====== FOOTER ====== -->
+<div class="container-fluid">
+  <div class="row align-items-center bg-dark">
+    <div class="col-8">
+      <div class="text-white">
+      <span class="h5"> <strong th:text="${admin.firstName}"></strong></span>
+      <span class="display-5">with roles:</span>
+      <th:block th:each="item : ${admin.getRoles()}"> <span class="display-5" th:text="${item.getAuthority()}"></span></th:block>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="text-right">
+        <div class="nav-link">
+        <span>
+          <a class="text-muted" href=/logout>Logout</a>
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<table th:border="1">
+  <caption><h2> Зарегистрированные в БД пользователи</h2></caption>
+
+  <tr>
+    <th>FirstName(login)</th> <th>LastName</th> <th>roles</th>
+  </tr>
+  <th:block th:each="user : ${usersList}">
+    <tr>
+      <td><h2><a th:href="@{user/{id}(id=${user.getId()})}" th:text="${user.getFirstName()}"></a></h2></td>
+      <td><h2><th:block th:text="${user.getLastName()}"></th:block></h2></td>
+      <td><h4><ul><th:block th:each="role : ${user.getRoles()}">
+        <li th:text="${role.getRole()}"></li></th:block></ul></h4></td>
+    </tr>
+  </th:block>
+</table>
+
+<form th:method="GET" th:action="@{/admin/user/add}">
+  <input type="submit" value="Add user">
+</form>
+
+<br>
+
+<form th:method="GET" th:action="@{/logout}">
+  <input type="submit" value="logout">
+</form>
+
+
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
