@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.dao.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +20,7 @@ public class UserDaoImpl implements UserDao{
     @PersistenceContext
     private EntityManager entityManager;
 
-    final RoleDao roleDao;
+    private final RoleDao roleDao;
 
     public UserDaoImpl(RoleDao roleDao) {
         this.roleDao = roleDao;
@@ -30,8 +29,7 @@ public class UserDaoImpl implements UserDao{
     @Override
     @Transactional
     public User findUserById(Long id) {
-        User user = entityManager.find(User.class, id);
-        return user;
+        return entityManager.find(User.class, id);
     }
 
     @Override
@@ -44,6 +42,11 @@ public class UserDaoImpl implements UserDao{
     @Override
     @Transactional
     public void saveUser(User user) {
+        List<Role> result = new ArrayList<>();
+        for (Role role: user.getRoles()) {
+            result.add(roleDao.findRoleByName(role.getAuthority()));
+        }
+        user.setRoles(result);
         entityManager.persist(user);
     }
 
@@ -71,8 +74,7 @@ public class UserDaoImpl implements UserDao{
         TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u where u.firstName = :username", User.class);
         query.setParameter("username", username);
         try {
-            Optional <User> rev = Optional.ofNullable(query.getSingleResult());
-            return rev;
+            return Optional.ofNullable(query.getSingleResult());
         } catch (Exception e){
             return Optional.empty();
         }

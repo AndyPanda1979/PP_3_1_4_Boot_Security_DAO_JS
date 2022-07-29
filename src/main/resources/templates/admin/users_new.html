@@ -158,7 +158,7 @@
                 </label>
                 <select multiple class="form-control" id="inputRoles" th:name="roles" th:value="*{roles}">
                   <th:block th:each="item : ${roles}">
-                    <option th:value="${item.id}" th:text="${item.getAuthority()}">ROLE</option>
+                    <option th:value="${item.role}" th:text="${item.getAuthority()}">ROLE</option>
                   </th:block>
                 </select>
               </div>
@@ -219,7 +219,7 @@
                 </label>
                 <select multiple class="form-control" id="inputRoles_d" th:name="roles" th:value="*{roles}" readonly>
                   <th:block th:each="item : ${roles}">
-                    <option th:value="${item.id}" th:text="${item.getAuthority()}">ROLE</option>
+                    <option th:value="${item.role}" th:text="${item.getAuthority()}">ROLE</option>
                   </th:block>
                 </select>
               </div>
