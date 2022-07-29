@@ -8,7 +8,6 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +31,20 @@ public class User {
 
 
     private List<Role> roles = new ArrayList<>();
-    // roles
+
     public void addRole(Role role) {
         this.roles.add(role);
     }
+
+    // конструкторы
+    public User () {}
+
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    // getters / setters
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
@@ -43,7 +52,6 @@ public class User {
     public List<Role> getRoles() {
         return roles;
     }
-
 
     public void setPassword(String password) {
         this.password = password;
@@ -68,13 +76,5 @@ public class User {
     }
     public String getLastName() {
         return lastName;
-    }
-
-    // конструкторы
-    public User () {}
-
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 }

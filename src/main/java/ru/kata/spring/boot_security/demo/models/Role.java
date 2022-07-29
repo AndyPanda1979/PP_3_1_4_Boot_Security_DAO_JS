@@ -16,17 +16,8 @@ public class Role implements GrantedAuthority {
     @Column(name = "role", nullable = false, length = 45)
     private String role;
 
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public Long getId() {
-        return id;
-    }
-    public void setRole(String role) {
-        this.role = role;
-    }
-    public String getRole() {
+    @Override
+    public String getAuthority() {
         return role;
     }
 
@@ -47,11 +38,22 @@ public class Role implements GrantedAuthority {
     }
 
     public Role (Long id, String role) {
-        this.id = id; this.role = role;
+        this.id = id;
+        this.role = role;
     }
 
-    @Override
-    public String getAuthority() {
+    // getters / setters
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
+    public String getRole() {
         return role;
     }
 }

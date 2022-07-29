@@ -72,7 +72,7 @@ public class AdminController {
 
     @PatchMapping("admin/user")
     public String saveUser(@ModelAttribute ("user") User user) {
-        userService.saveUser(user);
+        userService.updateUser(user);
         return ("redirect:/admin/users");
     }
 
