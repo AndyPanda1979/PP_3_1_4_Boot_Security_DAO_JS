@@ -2,12 +2,7 @@ package ru.kata.spring.boot_security.demo.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import org.springframework.security.core.userdetails.UserDetails;
-import ru.kata.spring.boot_security.demo.models.Role;
 
 @Entity
 @Table(name = "users")
@@ -38,24 +33,42 @@ public class User {
 
     private List<Role> roles = new ArrayList<>();
     // roles
-    public void addRole(Role role) {this.roles.add(role);}
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
 
-    public void setRoles(List<Role> roles) {this.roles = roles;}
-    public List<Role> getRoles() {return roles;}
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+    public List<Role> getRoles() {
+        return roles;
+    }
 
 
-    // password
-    public void setPassword(String password) {this.password = password;}
-    public String getPassword() {return password;}
-    // id
-    public void setId(long id) {this.id = id;}
-    public long getId() {return id;}
-    // firstName
-    public void setFirstName(String firstName) {this.firstName = firstName;}
-    public String getFirstName() {return firstName;}
-    // lastName
-    public void setLastName(String lastName) {this.lastName = lastName;}
-    public String getLastName() {return lastName;}
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
 
     // конструкторы
     public User () {}
@@ -64,6 +77,4 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
-
 }

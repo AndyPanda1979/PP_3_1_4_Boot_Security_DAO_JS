@@ -17,12 +17,18 @@ public class Role implements GrantedAuthority {
     private String role;
 
 
-    // id
-    public void setId(Long id) {this.id = id;}
-    public Long getId() {return id;}
-    // role
-    public void setRole(String role) {this.role = role;}
-    public String getRole() {return role;}
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
+    public String getRole() {
+        return role;
+    }
 
 
     // конструкторы
@@ -32,7 +38,9 @@ public class Role implements GrantedAuthority {
     }
 
     @Override
-    public String toString() {return this.role;}
+    public String toString() {
+        return this.role;
+    }
 
     public Role (Long id) {
         this.id = id;

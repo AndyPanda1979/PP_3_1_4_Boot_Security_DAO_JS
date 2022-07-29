@@ -14,7 +14,6 @@ public class RoleService {
     final
     RoleRepository roleRepository;
 
-
     public RoleService(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
@@ -22,14 +21,8 @@ public class RoleService {
     public Role getRoleByName(String roleName) {
         return roleRepository.findRoleByRole(roleName);
     }
-    public List<Role> getAllRoles() {return roleRepository.findAll();}
+    public List<Role> getAllRoles() {
+        return roleRepository.findAll();
+    }
 
-//    public List<String> getRolesAsStringList() {
-//        List<Role> roles = roleRepository.findAll();
-//        List<String> rolesAsStringList = new ArrayList<>();
-//        for (Role role: roles) {
-//            rolesAsStringList.add(role.getAuthority());
-//        }
-//        return rolesAsStringList;
-//    }
 }

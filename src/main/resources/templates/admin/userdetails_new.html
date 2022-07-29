@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Admin Panel</title>
+</head>
+<body>
+
+<!-- ====== Шапка ====== -->
+
+<div class="container-fluid">
+  <div class="row align-items-center bg-dark">
+    <div class="col-8">
+      <div class="text-white">
+        <span class="h5"> <strong th:text="${user.firstName}"></strong></span>
+        <span class="display-5">with roles:</span>
+        <th:block th:each="item : ${user.getRoles()}"> <span class="display-5" th:text="${item.getAuthority()}"></span></th:block>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="text-right">
+        <div class="nav-link">
+        <span>
+          <a class="text-muted" href=/logout>Logout</a>
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Контейнер для центральной части -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+
+      <!-- столбец навигации слева (2 колонки) -->
+
+      <ul class="nav flex-column nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/admin/users}">Admin</a>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link active" href="#" >User</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Часть с таблицей (10 колонок)-->
+
+    <div class="col-10">
+      <div class="d-grid gap-2">
+        <h1>User information-page</h1>
+      </div>
+
+      <!-- Вкладка About user -->
+
+      <ul class="nav nav-tabs nav-fill">
+        <li class="nav-item">
+          <span class="nav-link active" style="font-weight: bold; text-align: left"><h2>About user</h2></span>
+        </li>
+      </ul>
+
+      <!-- Таблица с данными пользователя -->
+
+      <div class="row px-3">
+        <div class="col-12 p-3" style="border-width: thin; border-style: solid; border-color: lightgray">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>ID</th><th>First Name (Login)</th><th>Last name</th><th>Role</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td th:text="${user.getId()}"></td>
+                <td th:text="${user.getFirstName()}"></td>
+                <td th:text ="${user.getLastName()}"></td>
+                <td> <th:block th:each="role : ${user.getRoles()}">
+                  <span th:text="${role.getAuthority()}"></span>
+                </th:block>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

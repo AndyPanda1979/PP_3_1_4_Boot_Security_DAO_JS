@@ -11,12 +11,12 @@ import ru.kata.spring.boot_security.demo.security.UserDetailsImpl;
 @Controller
 public class UserController {
 
-    @GetMapping(value = "/user")
+    @GetMapping(value = "/user/userinfo")
     public String userPage(ModelMap model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User user = userDetails.getUser();
         model.addAttribute("user", user);
-        return ("user");
+        return ("user/userdetails_new");
     }
 }

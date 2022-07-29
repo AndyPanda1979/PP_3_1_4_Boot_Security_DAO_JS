@@ -26,15 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/", "/index").permitAll()             // для этих путей доступ всем
                 .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
                 .formLogin().successHandler(successUserHandler)
-                .permitAll()
                 .and()
                 .logout().logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .permitAll();
+                .logoutSuccessUrl("/");
     }
 
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {

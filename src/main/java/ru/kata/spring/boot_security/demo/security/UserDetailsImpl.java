@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
 
-
     private final User user;
 
     public UserDetailsImpl(User user) {
@@ -25,7 +24,9 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     @Override
-    public String getPassword() {return this.user.getPassword();}
+    public String getPassword() {
+        return this.user.getPassword();
+    }
 
     @Override
     public String getUsername() {
@@ -52,5 +53,7 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-    public User getUser() {return this.user;}
+    public User getUser() {
+        return this.user;
+    }
 }

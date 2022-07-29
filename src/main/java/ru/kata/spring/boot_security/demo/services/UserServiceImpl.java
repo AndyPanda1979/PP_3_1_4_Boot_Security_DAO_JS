@@ -12,11 +12,8 @@ import java.util.List;
 @Service
 public class UserServiceImpl {
 
-    final
-    RoleRepository roleRepository;
-
-    final
-    UserRepository userRepository;
+    final RoleRepository roleRepository;
+    final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
@@ -34,7 +31,8 @@ public class UserServiceImpl {
     public void saveUser(User user) {
         userRepository.saveAndFlush(user);
     }
-    public void deleteUser(User user) {userRepository.delete(user);}
+    public void deleteUser(User user) {
+        userRepository.delete(user);}
 
     public List<String> getUserRolesAsStringList(User user) {
         List<Role> userRoles = user.getRoles();
