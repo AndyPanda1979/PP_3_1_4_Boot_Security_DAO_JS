@@ -53,6 +53,13 @@ public class UserDaoImpl implements UserDao{
     @Override
     @Transactional
     public void updateUser(User updatedUser) {
+        System.out.println("Хочу посмотреть, что в Update user DAO");
+        System.out.println(updatedUser.getId());
+        System.out.println(updatedUser.getFirstName());
+        System.out.println(updatedUser.getLastName());
+        System.out.println(updatedUser.getPassword());
+        System.out.println(updatedUser.getRoles());
+        System.out.println("***************");
         List<Role> result = new ArrayList<>();
         for (Role role: updatedUser.getRoles()) {
            result.add(roleDao.findRoleByName(role.getAuthority()));
