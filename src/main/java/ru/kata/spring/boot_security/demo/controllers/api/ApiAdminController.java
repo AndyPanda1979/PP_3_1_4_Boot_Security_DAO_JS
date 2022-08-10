@@ -1,14 +1,11 @@
 package ru.kata.spring.boot_security.demo.controllers.api;
 
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.security.UserDetailsImpl;
 import ru.kata.spring.boot_security.demo.services.RoleService;
-import ru.kata.spring.boot_security.demo.services.UserServiceImpl;
+import ru.kata.spring.boot_security.demo.services.UserService;
 
 import java.util.List;
 
@@ -16,20 +13,21 @@ import java.util.List;
 @RequestMapping("/api")
 public class ApiAdminController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
     private final RoleService roleService;
 
-    public ApiAdminController(UserServiceImpl userService, RoleService roleService) {
+    public ApiAdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
 
     // получить текущего владельца сессии
     @GetMapping(value = "admin/currentuser")
-    public User currentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        return userDetails.getUser();
+    public User currentUser(@AuthenticationPrincipal User testUser) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//        return userDetails.getUser();
+        return testUser;
     }
 
     // получить все возможные роли
