@@ -10,7 +10,7 @@ import ru.kata.spring.boot_security.demo.services.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/admin")
 public class ApiAdminController {
 
     private final UserService userService;
@@ -22,7 +22,7 @@ public class ApiAdminController {
     }
 
     // получить текущего владельца сессии
-    @GetMapping(value = "admin/currentuser")
+    @GetMapping(value = "/currentuser")
     public User currentUser(@AuthenticationPrincipal User testUser) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -31,34 +31,34 @@ public class ApiAdminController {
     }
 
     // получить все возможные роли
-    @GetMapping(value = "admin/roles")
+    @GetMapping(value = "/roles")
     public List<Role> allRoles() {
         return roleService.getAllRoles();
     }
 
     /* -- CRUD -- */
 
-    @GetMapping(value = "admin/users")
+    @GetMapping(value = "/users")
     public List<User> allUsers() {
         return userService.getUsers();
     }
 
-    @GetMapping(value = "/admin/users/{id}")
+    @GetMapping(value = "/users/{id}")
     public User userDetails(@PathVariable("id") Long id) {
         return userService.getUserById(id);
     }
 
-    @PostMapping(value = "/admin/users")
+    @PostMapping(value = "/users")
     public void createUser(@ModelAttribute ("user") User user, @ModelAttribute("role") Role role) {
         userService.saveUser(user);
     }
 
-    @PatchMapping("admin/users/{id}")
+    @PatchMapping("/users/{id}")
     public void saveUser(@ModelAttribute ("user") User user, @PathVariable ("id") Long id) {
         userService.updateUser(user);
     }
 
-    @DeleteMapping(value = "admin/users/{id}")
+    @DeleteMapping(value = "/users/{id}")
     public void deleteUser(@PathVariable ("id") Long id) {
         User user = userService.getUserById(id);
         userService.deleteUser(user);

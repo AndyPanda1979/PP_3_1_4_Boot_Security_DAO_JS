@@ -9,7 +9,7 @@ import ru.kata.spring.boot_security.demo.services.RoleService;
 import ru.kata.spring.boot_security.demo.services.UserServiceImpl;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class ApiUserController {
     private final UserServiceImpl userService;
     private final RoleService roleService;
@@ -21,7 +21,7 @@ public class ApiUserController {
     }
 
     // получить текущего владельца сессии
-    @GetMapping(value = "user/currentuser")
+    @GetMapping(value = "/currentuser")
     public User currentUser(@AuthenticationPrincipal User testUser) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
